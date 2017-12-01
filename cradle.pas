@@ -1,0 +1,96 @@
+{Some basic 'cradle' functions for our compiler}
+{based on J. Crenshaw's 1988 code}
+{DAV - need a C or C++ version...}
+
+program Cradle;
+
+{Constant declarations}
+cost TAB = ^I;
+
+{Variabe declaration}
+var Look: char; { a lookahead character}
+
+{Read new character from input stream}
+procedure GetChar;
+begin
+  Read(Look);
+end;
+
+{Report an error}
+procedure Error(s: string);
+begin
+  WriteLn;
+  WriteLn(^G, 'Error: ', s, '.');
+end;
+
+{Report an error and wait}
+procedure Abort(s: string);
+begin
+  Error(s);
+  Halt;
+end;
+
+{Report what was expected}
+procedure Expected(s: string);
+begin
+  Abort(s + ' Expected')
+end;
+
+{Match a specific input character}
+procedure Match(x: char);
+begin
+  if Look = x then getChar
+  else Expected('''' + x + '''');
+end;
+
+{Recognize an alpha character}
+function IsAlpha(c: char): boolean;
+begin
+  IsAlpha := upcase(c) in ['A'..'Z'];
+end;
+
+{Recognize a decimal digit}
+function IsDigit(c: char): boolean;
+begin
+  IsDigit := c in ['0'..'9'];
+end;
+
+{Get an identifier}
+function GetName: char;
+begin
+  if not IsAlpha(Look) then Expected('Name');
+  GetName := UpCase(Look);
+  GetChar;
+end;
+
+{Get a Number}
+function GetNum: char;
+begin
+  if not IsDigit(Look) then Expected('Integer');
+  GetNum := Look;
+  GetChar;
+end;
+
+{Output a string with Tab}
+procedure Emit(s: string);
+begin
+  Write(TAB, s);
+end;
+
+{Output a string with a Tab and CRLF}
+procedure EmitLn;(s: string);
+begin
+  Emit(s);
+  WriteLn;
+end;
+
+{Initialise}
+procedure Init;
+begin
+  GetChar;
+end;
+
+{ Main }
+begin
+  Init;
+end.
