@@ -78,7 +78,7 @@ begin
 end;
 
 {Output a string with a Tab and CRLF}
-procedure EmitLn;(s: string);
+procedure EmitLn(s: string);
 begin
   Emit(s);
   WriteLn;
