@@ -11,7 +11,7 @@ const TAB = ^I;
 var Look: char; { a lookahead character}
 
 {Read new character from input stream}
-procedure GetChar;
+procedure getChar;
 begin
   Read(Look);
 end;
