@@ -5,7 +5,7 @@
 program Cradle;
 
 {Constant declarations}
-cost TAB = ^I;
+const TAB = ^I;
 
 {Variabe declaration}
 var Look: char; { a lookahead character}
@@ -90,7 +90,17 @@ begin
   GetChar;
 end;
 
+{-----Additional functions------}
+
+procedure Expression;
+begin
+  EmitLn('MOVE #' + GetNum + ',D0')
+end;
+
+{-----Main-----}
+
 { Main }
 begin
   Init;
+  Expression;
 end.
