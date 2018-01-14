@@ -1,17 +1,18 @@
 # A python version of of J. Crenshaw's
 # Let's Build a Compiler Series
 
-lookahead =""
+lookahead = ""
 
 def getChar():
-  lookahead = raw_input()
+  #lookahead = raw_input()  # Python 2.x
+  lookahead = input()
 
 def Expected(false_str):
-  
+  pass
 
 def Match(match_char, lookahead):
-  if lookahaed == match_char;
-    getChar():
+  if lookahead == match_char:
+    getChar()
   else:
     raise("Expected: ", match_char)
     
@@ -19,9 +20,10 @@ def Match(match_char, lookahead):
 # because python already has builtins for this
 
 def getName():
-  if not isalpha(lookahaead):
+  if not lookahead.isalpha():
     raise("Expected: Name")
-  else
+  else:
+      pass
 
 
 
