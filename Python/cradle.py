@@ -34,7 +34,31 @@ def getNum():
       result = lookahead
       getChar
       return result
-      
+  
+def emit(s):
+  """print a string with a Tab"""
+  print("\t" + s)
+
+# Don't think this is actually necessary for python
+# c.f pascal version.
+def emitLn(s):
+  """print a string with a tab and endline"""
+  emit(s)
+  print("\n")
+
+def init():
+  getChar()
+  
+def expression():
+  emitLn('MOVE #' + getNum + ',D0')
+
+
+if __name__=="__main__":
+  init()
+  expression()
+
+
+  
         
 
 
