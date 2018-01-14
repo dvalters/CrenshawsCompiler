@@ -8,7 +8,7 @@ def getChar():
   lookahead = input()
 
 def Expected(false_str):
-  pass
+  raise(false_str + ' Expected')
 
 def Match(match_char, lookahead):
   if lookahead == match_char:
@@ -21,9 +21,21 @@ def Match(match_char, lookahead):
 
 def getName():
   if not lookahead.isalpha():
-    raise("Expected: Name")
+    Expected('Name')
   else:
-      pass
+      result = lookahead.upper()
+      getChar()
+      return result
+      
+def getNum():
+    if not lookahead.isdigit():
+      Expected('Integer')
+    else:
+      result = lookahead
+      getChar
+      return result
+      
+        
 
 
 
