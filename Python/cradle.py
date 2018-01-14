@@ -1,16 +1,16 @@
 # A python version of of J. Crenshaw's
 # Let's Build a Compiler Series
 
-lookahead = ""
-
 def getChar():
   #lookahead = raw_input()  # Python 2.x
+  global lookahead
   lookahead = input()
 
 def Expected(false_str):
   raise Exception(false_str + ' Expected')
 
-def Match(match_char, lookahead):
+def Match(match_char):
+  global lookahead
   if lookahead == match_char:
     getChar()
   else:
@@ -20,6 +20,7 @@ def Match(match_char, lookahead):
 # because python already has builtins for this
 
 def getName():
+  global lookahead
   if not lookahead.isalpha():
     Expected('Name')
   else:
@@ -28,11 +29,12 @@ def getName():
       return result
       
 def getNum():
+    global lookahead
     if not lookahead.isdigit():
       Expected('Integer')
     else:
       result = lookahead
-      getChar
+      getChar()
       return result
   
 def emit(s):
@@ -52,8 +54,8 @@ def init():
 def expression():
   emitLn('MOVE #' + getNum() + ',D0')
 
-
 if __name__=="__main__":
+  lookahead = ""
   init()
   expression()
 
