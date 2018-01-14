@@ -8,13 +8,13 @@ def getChar():
   lookahead = input()
 
 def Expected(false_str):
-  raise(false_str + ' Expected')
+  raise Exception(false_str + ' Expected')
 
 def Match(match_char, lookahead):
   if lookahead == match_char:
     getChar()
   else:
-    raise("Expected: ", match_char)
+    raise Exception("Expected: ", match_char)
     
 # We don't need a MatchAlpha and MatchDigit
 # because python already has builtins for this
@@ -50,7 +50,7 @@ def init():
   getChar()
   
 def expression():
-  emitLn('MOVE #' + getNum + ',D0')
+  emitLn('MOVE #' + getNum() + ',D0')
 
 
 if __name__=="__main__":
