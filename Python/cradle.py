@@ -32,10 +32,9 @@ def getNum():
     global lookahead
     if not lookahead.isdigit():
       Expected('Integer')
-    else:
-      result = lookahead
-      getChar()
-      return result
+    result = lookahead
+    #getChar()
+    return result
   
 def emit(s):
   """print a string with a Tab"""
@@ -46,7 +45,7 @@ def emit(s):
 def emitLn(s):
   """print a string with a tab and endline"""
   emit(s)
-  print("\n")
+  #print("\n")
 
 def init():
   getChar()
