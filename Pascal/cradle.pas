@@ -111,6 +111,7 @@ begin
   Match('-');
   Term;
   EmitLn('SUB D1,D0');
+  EmitLn('NEG D0');
 end;
 
 {Parse and translte an Expression}
