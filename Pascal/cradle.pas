@@ -91,11 +91,40 @@ begin
 end;
 
 {-----Additional functions------}
-
-procedure Expression;
+{ We are going to rename this to term now}
+procedure Term;
 begin
   EmitLn('MOVE #' + GetNum + ',D0')
 end;
+
+{Recognise and Translate an Add}
+procedure Add;
+begin
+  Match('+');
+  Term;
+  EmitLn('ADD D1,D0');
+end;
+
+{Regognise and Translate a Subtract}
+procedure Subtract;
+begin
+  Match('-');
+  Term;
+  EmitLn('SUB D1,D0');
+end;
+
+{Parse and translte an Expression}
+procedure Expression;
+begin
+  Term;
+  EmitLn('MOVE D0,D1');
+  case Look of
+    '+': Add;
+    '-': Subtract;
+  else Expected('Addop');
+  end;
+end;
+
 
 {-----Main-----}
 
