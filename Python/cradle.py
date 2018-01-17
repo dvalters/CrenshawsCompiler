@@ -2,7 +2,8 @@
 # Let's Build a Compiler Series
 
 class Cradle(object):
-  
+"""Cradle contains the most basic compiler
+   functions for our simple compiler object"""
   def __init__(self):
     self.lookahead = ""
     self.getChar()
@@ -47,22 +48,12 @@ class Cradle(object):
   def emitLn(self, s):
     """print a string with a tab and endline"""
     self.emit(s)
-    #print("\n"):
-
-  def init(self):
-    self.getChar()
     
   def expression(self):
+    """Writes a 68000 assembler language instruction"""
     self.emitLn('MOVE #' + self.getNum() + ',D0')
 
 if __name__=="__main__":
   c = Cradle()
   c.expression()
-
-
-  
-        
-
-
-
 
