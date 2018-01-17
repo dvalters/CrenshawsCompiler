@@ -1,62 +1,63 @@
 # A python version of of J. Crenshaw's
 # Let's Build a Compiler Series
 
-def getChar():
-  #lookahead = raw_input()  # Python 2.x
-  global lookahead
-  lookahead = input()
+class Cradle(object):
+  
+  def __init__(self):
+    self.lookahead = ""
+    self.getChar()
 
-def Expected(false_str):
-  raise Exception(false_str + ' Expected')
+  def getChar(self):
+    #lookahead = raw_input()  # Python 2.7
+    self.lookahead = input()
 
-def Match(match_char):
-  global lookahead
-  if lookahead == match_char:
-    getChar()
-  else:
-    raise Exception("Expected: ", match_char)
-    
-# We don't need a MatchAlpha and MatchDigit
-# because python already has builtins for this
+  def Expected(self, false_str):
+    raise Exception(false_str + ' Expected')
 
-def getName():
-  global lookahead
-  if not lookahead.isalpha():
-    Expected('Name')
-  else:
-      result = lookahead.upper()
-      getChar()
-      return result
+  def Match(self, match_char):
+    if self.lookahead == match_char:
+      self.getChar()
+    else:
+      raise Exception("Expected: ", match_char)
       
-def getNum():
-    global lookahead
-    if not lookahead.isdigit():
-      Expected('Integer')
-    result = lookahead
-    #getChar()
-    return result
-  
-def emit(s):
-  """print a string with a Tab"""
-  print("\t" + s)
+  # We don't need a MatchAlpha and MatchDigit
+  # because python already has builtins for this
 
-# Don't think this is actually necessary for python
-# c.f pascal version.
-def emitLn(s):
-  """print a string with a tab and endline"""
-  emit(s)
-  #print("\n")
+  def getName(self):
+    if not self.lookahead.isalpha():
+      self.Expected('Name')
+    else:
+        result = self.lookahead.upper()
+        self.getChar()
+        return result
+        
+  def getNum(self):
+      if not self.lookahead.isdigit():
+        self.Expected('Integer')
+      result = self.lookahead
+      #getChar()
+      return result
+    
+  def emit(self, s):
+    """print a string with a Tab"""
+    print("\t" + s)
 
-def init():
-  getChar()
-  
-def expression():
-  emitLn('MOVE #' + getNum() + ',D0')
+  # Don't think this is actually necessary for python
+  # c.f pascal version.
+  def emitLn(self, s):
+    """print a string with a tab and endline"""
+    self.emit(s)
+    #print("\n"):
+
+  def init(self):
+    self.getChar()
+    
+  def expression(self):
+    self.emitLn('MOVE #' + self.getNum() + ',D0')
 
 if __name__=="__main__":
-  lookahead = ""
-  init()
-  expression()
+  c = Cradle()
+  c.expression()
 
 
   
