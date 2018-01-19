@@ -2,8 +2,8 @@
 # Let's Build a Compiler Series
 
 class Cradle(object):
-"""Cradle contains the most basic compiler
-   functions for our simple compiler object"""
+  """Cradle contains the most basic compiler
+  functions for our simple compiler object"""
   def __init__(self):
     self.lookahead = ""
     self.getChar()
