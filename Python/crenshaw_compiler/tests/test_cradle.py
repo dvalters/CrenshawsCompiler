@@ -2,8 +2,7 @@
 import unittest
 from unittest.mock import patch
 
-import sys
-import cradle as cr
+import crenshaw_compiler.cradle as cr
 
 class testCradle(unittest.TestCase):
     
