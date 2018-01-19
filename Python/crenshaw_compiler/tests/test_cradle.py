@@ -10,7 +10,7 @@ class testCradle(unittest.TestCase):
    def test_Match(self, input):
       compiler = cr.Cradle()
       char_to_match = "X"
-      self.assertEqual(compiler.Match("X"), char_to_match) 
+      self.assertEqual(compiler.lookahead, char_to_match) 
 
 if __name__=='__main__':
     unittest.main()
