@@ -104,7 +104,7 @@ end;
 procedure Add;
 begin
   Match('+');
-  Term;
+  Factor;
   EmitLn('ADD (SP)+,D0');
 end;
 
@@ -112,7 +112,7 @@ end;
 procedure Subtract;
 begin
   Match('-');
-  Term;
+  Factor;
   EmitLn('SUB (SP)+,D0');
   EmitLn('NEG D0');
 end;
@@ -144,6 +144,20 @@ begin
       '+': Add;
       '-': Subtract;
     else Expected('Addop');
+    end;
+  end;
+end;
+
+{Parse and translate a math term}
+procedure Term;
+begin
+  Factor;
+  while Look in ['*', '/'] do begin
+    EmitLn('MOVE D0,-(SP)');
+    case Look of
+      '*': Multiply;
+      '/': Divide;
+    else Expected('Mulop');
     end;
   end;
 end;
