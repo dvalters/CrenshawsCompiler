@@ -100,23 +100,6 @@ begin
   EmitLn('MOVE #' + GetNum + ',D0')
 end;
 
-{Recognise and Translate an Add}
-procedure Add;
-begin
-  Match('+');
-  Factor;
-  EmitLn('ADD (SP)+,D0');
-end;
-
-{Regognise and Translate a Subtract}
-procedure Subtract;
-begin
-  Match('-');
-  Factor;
-  EmitLn('SUB (SP)+,D0');
-  EmitLn('NEG D0');
-end;
-
 {Recognise and translate a Multiply}
 procedure Multiply;
 begin
@@ -134,20 +117,6 @@ begin
   EmitLn('DIVS D1,D0');
 end; 
 
-{Parse and translate an Expression}
-procedure Expression;
-begin
-  Term;
-  while Look in ['+', '-'] do begin
-    EmitLn('MOVE D0,-(SP)');
-    case Look of
-      '+': Add;
-      '-': Subtract;
-    else Expected('Addop');
-    end;
-  end;
-end;
-
 {Parse and translate a math term}
 procedure Term;
 begin
@@ -158,6 +127,37 @@ begin
       '*': Multiply;
       '/': Divide;
     else Expected('Mulop');
+    end;
+  end;
+end;
+
+{Recognise and Translate an Add}
+procedure Add;
+begin
+  Match('+');
+  Term;
+  EmitLn('ADD (SP)+,D0');
+end;
+
+{Regognise and Translate a Subtract}
+procedure Subtract;
+begin
+  Match('-');
+  Term;
+  EmitLn('SUB (SP)+,D0');
+  EmitLn('NEG D0');
+end;
+
+{Parse and translate an Expression}
+procedure Expression;
+begin
+  Term;
+  while Look in ['+', '-'] do begin
+    EmitLn('MOVE D0,-(SP)');
+    case Look of
+      '+': Add;
+      '-': Subtract;
+    else Expected('Addop');
     end;
   end;
 end;
