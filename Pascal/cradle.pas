@@ -93,7 +93,9 @@ end;
 
 {-----Additional functions------}
 { We are going to rename this to term now}
-procedure Term;
+{ Term -> Factor }
+{Parse and translate a math factor}
+procedure Factor;
 begin
   EmitLn('MOVE #' + GetNum + ',D0')
 end;
@@ -115,7 +117,24 @@ begin
   EmitLn('NEG D0');
 end;
 
-{Parse and translte an Expression}
+{Recognise and translate a Multiply}
+procedure Multiply;
+begin
+  Match('*');
+  Factor;
+  EmitLn('MULS (SP)+,D0');
+end;
+
+{Recognise and translate a Division}
+procedure Divide;
+begin 
+  Match('/');
+  Factor;
+  EmitLn('MOVE (SP)+,D1');
+  EmitLn('DIVS D1,D0');
+end; 
+
+{Parse and translate an Expression}
 procedure Expression;
 begin
   Term;
