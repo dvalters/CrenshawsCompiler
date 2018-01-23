@@ -1,5 +1,7 @@
 # Crenshaw's Compiler
 
+![build test](https://travis-ci.org/dvalters/CrenshawsCompiler.svg?branch=master)
+
 This code follows Jack Crenshaw's "Let's build a compiler" series of articles.
 
 You will need a Pascal compiler to build this code.
