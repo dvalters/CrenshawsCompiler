@@ -6,4 +6,6 @@ python:
 
 install: true
 
-script: python3 Python/run_tests.sh
+script:
+ - cd Python
+ - python3 -m unittest crenshaw_compiler.tests.test_cradle
