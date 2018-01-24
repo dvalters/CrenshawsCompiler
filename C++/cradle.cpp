@@ -6,7 +6,7 @@
 #include <string>
 #include <cctype>
 
-void getChar(std::string& lookahead)
+void getChar(char& lookahead)
 {
   std::cin >> lookahead;
 }
@@ -27,7 +27,7 @@ void Expected(std::string str)
 }
 
 // Match a character with the lookahead character
-void Match(std::string x, std::string& lookahead)
+void Match(char	x, char& lookahead)
 {
   if(lookahead == x)
   {
@@ -51,9 +51,19 @@ bool is_digit(char chr)
   return std::isdigit(static_cast<unsigned char>(chr));
 }
 
+// Get an indentifier
+char getName(char& lookahead)
+{
+  if(!is_alpha(lookahead)
+  {
+    Expected('Name');
+    getChar();
+  }
+}
+
 
 int main()
 {
-  std::string lookahead;
+  char lookahead;
 }
   
