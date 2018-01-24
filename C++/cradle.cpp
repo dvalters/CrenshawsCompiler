@@ -61,13 +61,26 @@ char getName(char& lookahead)
   if(!is_alpha(lookahead))
   {
     Expected("Name");
-    getChar(lookahead);
   }
+  return std::toupper(lookahead);
+  getChar(lookahead);
+  
 }
 
+// Get a number
+char getNum(char& lookahead)
+{
+  if(!is_digit(lookahead))
+  {
+    Expected("Integer");
+  }
+  return lookahead;
+  getChar(lookahead);
+}
 
 int main()
 {
   char lookahead;
+
 }
   
