@@ -35,7 +35,11 @@ void Match(char	x, char& lookahead)
   }
   else
   {
-    Expected("''" + x + "''");
+    std::string charstr;
+    charstr += "''";
+    charstr += x;
+    charstr += "''"; 
+    Expected(charstr);
   }
 }
 
@@ -54,10 +58,10 @@ bool is_digit(char chr)
 // Get an indentifier
 char getName(char& lookahead)
 {
-  if(!is_alpha(lookahead)
+  if(!is_alpha(lookahead))
   {
-    Expected('Name');
-    getChar();
+    Expected("Name");
+    getChar(lookahead);
   }
 }
 
