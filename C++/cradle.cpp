@@ -4,6 +4,7 @@
 //
 #include <iostream>
 #include <string>
+#include <cctype>
 
 void getChar(std::string& lookahead)
 {
@@ -25,20 +26,34 @@ void Expected(std::string str)
   Abort(str + " Expected");
 }
 
-void Match(char x, std::string& lookahead)
+// Match a character with the lookahead character
+void Match(std::string x, std::string& lookahead)
 {
-  if (lookahead == x)
+  if(lookahead == x)
   {
     getChar(lookahead);
   }
   else
   {
-    Expected("''" + x "''");
+    Expected("''" + x + "''");
   }
 }
 
+// Recognise an alpha character
+bool is_alpha(char chr)
+{
+  return std::isalpha(static_cast<unsigned char>(chr));
+}
+
+// Recognise a number character
+bool is_digit(char chr)
+{
+  return std::isdigit(static_cast<unsigned char>(chr));
+}
+
+
 int main()
 {
-  std::string lookahead
+  std::string lookahead;
 }
   
