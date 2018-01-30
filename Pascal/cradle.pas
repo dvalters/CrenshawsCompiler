@@ -106,7 +106,8 @@ begin
     Expression;
     Match(')');
     end
-  EmitLn('MOVE #' + GetNum + ',D0')
+  else
+    EmitLn('MOVE #' + GetNum + ',D0');
 end;
 
 {Recognise and translate a Multiply}
