@@ -95,8 +95,17 @@ end;
 { We are going to rename this to term now}
 { Term -> Factor }
 {Parse and translate a math factor}
+procedure Expression; Forward;
+{this allows the expression procedure to be
+referenced here}
+
 procedure Factor;
 begin
+  if Look = '(' then begin
+    Match('(');
+    Expression;
+    Match(')');
+    end
   EmitLn('MOVE #' + GetNum + ',D0')
 end;
 
