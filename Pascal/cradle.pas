@@ -158,11 +158,20 @@ begin
   EmitLn('NEG D0');
 end;
 
+{Recognise an Add Op}
+function IsAddop(c: char): boolean;
+begin
+  IsAddop := c in ['+', '-'];
+end;
+
 {Parse and translate an Expression}
 procedure Expression;
 begin
-  Term;
-  while Look in ['+', '-'] do begin
+  if IsAddop(Look) then
+    EmitLn('CLR D0')
+  else
+    Term;
+  while IsAddop(Look) do begin
     EmitLn('MOVE D0,-(SP)');
     case Look of
       '+': Add;
